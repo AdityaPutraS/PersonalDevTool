@@ -35,7 +35,9 @@ class _TextGeneratorPageState extends State<TextGeneratorPage>
 
   void _addText(text) {
     setState(() {
-      inputTextController.text += text;
+      var start = inputTextController.selection.start;
+      var end = inputTextController.selection.end;
+      inputTextController.text = inputTextController.text.substring(0, start) + text + inputTextController.text.substring(end);
     });
   }
 
