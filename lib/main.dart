@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:personal_dev_tools/text_formatter.dart';
+import 'package:personal_dev_tools/text_generator.dart';
 import 'package:personal_dev_tools/util.dart';
 
 void main() {
@@ -63,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return MaterialApp(
       home: DefaultTabController(
-        length: 3,
+        length: 4,
         child: Scaffold(
           appBar: AppBar(
             // Here we take the value from the MyHomePage object that was created by
@@ -72,7 +73,8 @@ class _MyHomePageState extends State<MyHomePage> {
             bottom: const TabBar(tabs: [
               Tab(text: "Json"),
               Tab(text: "IN Query"),
-              Tab(text: "Helm Env")
+              Tab(text: "Helm Env"),
+              Tab(text: "Generate Text")
             ]),
           ),
           body: const TabBarView(
@@ -92,7 +94,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 formattedLabel: "Helm Env Variable",
                 formatFunc: formatEnvToHelmEnv,
                 inverseFormatFunc: formatHelmEnvToEnv,
-              )
+              ),
+              TextGeneratorPage(
+                inputLabel: "Input Format",
+                generatedLabel: "Generated Text",
+                generatorFunc: generateText,
+              ),
             ],
           ),
         ),

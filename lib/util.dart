@@ -1,5 +1,9 @@
 import 'dart:convert';
 
+import 'package:objectid/objectid.dart';
+import 'package:uuid/uuid.dart';
+import 'package:xid/xid.dart';
+
 String parseAndFormatJSON(String text) {
   JsonEncoder encoder = const JsonEncoder.withIndent('    ');
   try {
@@ -45,4 +49,22 @@ String formatHelmEnvToEnv(String text) {
     }
   }
   return result.join('\n');
+}
+
+String generateText(String text, int number) {
+  String generatedText = '';
+  for (var i = 0; i < number; i++) {
+    const uuid = Uuid();
+    var xid = Xid();
+    var mongoid = ObjectId();
+    var timestamp = DateTime.now().millisecondsSinceEpoch;
+    String formattedText = text
+        .replaceAll('\${uuidv4}', uuid.v4())
+        .replaceAll('\${xid}', xid.toString())
+        .replaceAll('\${mongoid}', mongoid.toString())
+        .replaceAll('\${timestamp}', timestamp.toString())
+        .replaceAll('\${iter}', i.toString());
+    generatedText += formattedText + '\n';
+  }
+  return generatedText;
 }

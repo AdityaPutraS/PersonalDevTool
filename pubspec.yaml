@@ -36,6 +36,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_json_view: ^0.3.0
   font_awesome_flutter: ^10.1.0
+  uuid: ^3.0.6
+  xid: ^1.0.7
+  objectid: ^2.1.0
 
 dev_dependencies:
   flutter_test:
