@@ -21,11 +21,27 @@ class _TextGeneratorPageState extends State<TextGeneratorPage>
     with AutomaticKeepAliveClientMixin<TextGeneratorPage> {
   var inputTextController = TextEditingController();
   var generatedTextController = TextEditingController();
+  late FocusNode focusNode;
+
   bool useInverseFormatFunc = false;
   int numTextGenerated = 1;
 
   @override
   bool get wantKeepAlive => true;
+
+  @override
+  void initState() {
+    super.initState();
+
+    focusNode = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    focusNode.dispose();
+
+    super.dispose();
+  }
 
   void _setText(text) {
     setState(() {
@@ -34,11 +50,12 @@ class _TextGeneratorPageState extends State<TextGeneratorPage>
   }
 
   void _addText(text) {
+    var start = inputTextController.selection.start;
+    var end = inputTextController.selection.end;
     setState(() {
-      var start = inputTextController.selection.start;
-      var end = inputTextController.selection.end;
       inputTextController.text = inputTextController.text.substring(0, start) + text + inputTextController.text.substring(end);
     });
+    focusNode.requestFocus();
   }
 
   @override
@@ -159,6 +176,8 @@ class _TextGeneratorPageState extends State<TextGeneratorPage>
                       controller: inputTextController,
                       maxLines: null,
                       keyboardType: TextInputType.multiline,
+                      focusNode: focusNode,
+                      autofocus: true,
                     ),
                     flex: 1),
                 Visibility(

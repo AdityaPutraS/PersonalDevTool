@@ -41,6 +41,7 @@ class _QrRendererPageState extends State<QrRendererPage>
                 controller: inputTextController,
                 maxLines: null,
                 keyboardType: TextInputType.multiline,
+                autofocus: true,
               ),
               flex: 1),
           Expanded(

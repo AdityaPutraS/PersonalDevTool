@@ -66,6 +66,7 @@ class _TextFormatterPageState extends State<TextFormatterPage>
                 controller: inputTextController,
                 maxLines: null,
                 keyboardType: TextInputType.multiline,
+                autofocus: true,
               ),
               flex: 1),
           Visibility(
