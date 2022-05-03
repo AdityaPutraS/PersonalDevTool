@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, avoid_print
 
 import 'package:flutter/material.dart';
+import 'package:personal_dev_tools/qr_renderer.dart';
 
 import 'package:personal_dev_tools/text_formatter.dart';
 import 'package:personal_dev_tools/text_generator.dart';
@@ -64,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return MaterialApp(
       home: DefaultTabController(
-        length: 4,
+        length: 5,
         child: Scaffold(
           appBar: AppBar(
             // Here we take the value from the MyHomePage object that was created by
@@ -74,7 +75,8 @@ class _MyHomePageState extends State<MyHomePage> {
               Tab(text: "Json"),
               Tab(text: "IN Query"),
               Tab(text: "Helm Env"),
-              Tab(text: "Generate Text")
+              Tab(text: "Generate Text"),
+              Tab(text: "Render QR")
             ]),
           ),
           body: const TabBarView(
@@ -100,6 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 generatedLabel: "Generated Text",
                 generatorFunc: generateText,
               ),
+              QrRendererPage(),
             ],
           ),
         ),
